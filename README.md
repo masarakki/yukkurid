@@ -8,6 +8,7 @@ daemonized bowyomi chan.
 - ALSA (aplay command)
 - mecab
 - ruby
+- AquesTalk2.so
 
 ## Setup
 
