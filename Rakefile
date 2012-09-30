@@ -17,13 +17,13 @@ namespace :server do
   desc 'stop server'
   task :stop do
     pid = `cat rack.pid`.strip
-    `kill -INT #{pid}` unless pid == ""
+    `kill -KILL #{pid}` unless pid == ""
   end
 
   desc 'restart server'
   task :restart do
-    Rake::Task['stop'].invoke
-    Rake::Task['start'].invoke
+    Rake::Task['server:stop'].invoke
+    Rake::Task['server:start'].invoke
   end
 end
 
