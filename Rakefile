@@ -2,6 +2,12 @@ require 'rake'
 
 port = 9999
 
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
+end
+
 namespace :server do
   desc 'start server'
   task :start do
@@ -20,3 +26,5 @@ namespace :server do
     Rake::Task['start'].invoke
   end
 end
+
+task :default => :spec
