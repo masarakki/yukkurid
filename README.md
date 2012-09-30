@@ -7,6 +7,7 @@ daemonized bowyomi chan.
 ## Require
 - ALSA (aplay command)
 - mecab
+- [unidic](http://www.tokuteicorpus.jp/dist/)
 - ruby
 - AquesTalk2.so
 
@@ -15,12 +16,13 @@ daemonized bowyomi chan.
     hub clone masarakki/yukkurid
     cd yukkurid
     bundle install
-    rackup -p #{port_num}
+    # edit Rakefile to fix port (default: 9999)
+    rake server:start
 
 
 ## Usage
 
-    curl -d "message=ゆっくりして行ってね!" http://localhost:#{port_num}/
+    curl -d "message=ゆっくりして行ってね" http://localhost:9999/
 
 棒読みちゃんがしゃべるよ!
 
