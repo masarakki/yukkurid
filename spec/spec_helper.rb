@@ -1,9 +1,17 @@
 require 'rubygems'
-require 'rspec'
-require 'yukkuri'
+require 'spork'
 
-$:.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$:.unshift(File.dirname(__FILE__))
+Spork.prefork do
+  $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+  $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-RSpec.configure do |config|
+  require 'rspec'
+  require 'yukkuri'
+
+  RSpec.configure do |config|
+  end
+
+end
+
+Spork.each_run do
 end
