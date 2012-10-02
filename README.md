@@ -11,14 +11,20 @@ daemonized bowyomi chan.
 - ruby
 - AquesTalk2.so
 
-## Setup
+## Install
 
     hub clone masarakki/yukkurid
     cd yukkurid
     bundle install
-    # edit Rakefile to fix port (default: 9999)
-    rake server:start
 
+## Setup
+
+- Rakefile portを変更可能
+- config.ru Yukkuri.setup の中を変更可能
+
+## Start
+
+    rake server:start
 
 ## Usage
 
