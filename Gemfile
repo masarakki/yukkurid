@@ -5,6 +5,7 @@ gem 'nokogiri'
 gem 'haml'
 gem 'sass'
 gem 'redcarpet'
+gem 'redis'
 
 group :development, :test do
   gem 'rspec'
