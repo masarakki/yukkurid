@@ -6,6 +6,7 @@ gem 'haml'
 gem 'sass'
 gem 'redcarpet'
 gem 'redis'
+gem 'rake'
 
 group :development, :test do
   gem 'rspec'
