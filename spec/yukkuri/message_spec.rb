@@ -66,7 +66,6 @@ describe Yukkuri::Message do
     end
 
     context "それは難しいな" do
-      before { p subject.accent }
       its(:aqtalk) { should == "ソレワ/ムズカシ'ーナ" }
     end
 
@@ -76,6 +75,10 @@ describe Yukkuri::Message do
 
     context "任せてもいいですか?" do
       its(:aqtalk) { should == "マカセ'テモ/イ'ーデスカ\?" }
+    end
+
+    context "ゆっくりしていってね" do
+      its(:aqtalk) { should == "ユック'リ/シテ/イッテネ" }
     end
 
     context "今日は非常に暑いので、夜はビールでも飲みに行きたいと思っています。" do
