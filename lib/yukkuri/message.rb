@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'csv'
+require 'nkf'
 
 module Yukkuri
   class Message
@@ -11,7 +12,7 @@ module Yukkuri
 
 
     def initialize(str)
-      @message = str
+      @message = NKF.nkf('-w -Z1', str)
     end
 
     def mecab

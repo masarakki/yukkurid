@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Yukkuri::Message do
-  subject { described_class.new self.class.ancestors[1].description }
+  subject { described_class.new example.example_group.parent_groups[1].description }
 
   describe :mora do
     subject { described_class.new "カッパの好物はチョコレート" }
@@ -87,6 +87,14 @@ describe Yukkuri::Message do
 
     context "両軍の総大将" do
       its(:aqtalk) { should == "リョーグンノ/ソータ'イショー" }
+    end
+
+    context "ゆっくり していってね" do
+      its(:aqtalk) { should == "ユック'リ/シテ/イッテネ" }
+    end
+
+    context "ゆっくり　していってね" do
+      its(:aqtalk) { should == "ユック'リ/シテ/イッテネ" }
     end
   end
 end
