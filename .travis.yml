@@ -1,6 +1,7 @@
 language: ruby
-before-script:
+before_script:
   - sudo apt-get install mecab
+  - rake unidic:install
 rvm:
  - 1.9.3
 services:
