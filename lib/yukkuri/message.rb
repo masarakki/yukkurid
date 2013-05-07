@@ -5,18 +5,38 @@ require 'nkf'
 module Yukkuri
   class Message
 
-    HINSHI = 1
-    YOMI = 10
-    ACCENT = 23
-    CONBINATION_TYPE = 24
+    OLD_HINSHI = 1
+    OLD_YOMI = 10
+    OLD_ACCENT = 23
+    OLD_CONBINATION_TYPE = 24
 
+    YOMI = 1
+    HINSHI = 2
+    ACCENT = 3
+    CONBINATION_TYPE = 4
 
     def initialize(str)
       @message = NKF.nkf('-w -Z1', str)
     end
 
+    def self.unidic_dir
+      "unidic"
+    end
+
     def mecab
-      @mecab ||= CSV.parse(`echo "#{@message}" | mecab -d ~/unidic/dic/unidic-mecab --eos-format=\n`.gsub(/\t/, ','))
+      @mecab ||= CSV.parse(`echo "#{@message}" | mecab -d #{Message.unidic_dir} --output-format-type=yukkuri`, :col_sep => "\t")
+    end
+
+    def old_mecab
+      @old_mecab ||= CSV.parse(`echo "#{@message}" | mecab -d ~/unidic/dic/unidic-mecab --eos-format=\n`.gsub(/\t/, ','))
+    end
+
+    def output_old_mecab
+      p :old, old_mecab.map {|x| [x[OLD_YOMI], x[OLD_HINSHI], x[OLD_ACCENT], x[OLD_CONBINATION_TYPE]] }
+    end
+
+    def output_mecab
+      p :new, mecab.map {|x| [x[YOMI], hinshi(x), x[ACCENT], x[CONBINATION_TYPE]] }
     end
 
     def mora
