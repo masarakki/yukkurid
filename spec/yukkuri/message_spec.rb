@@ -9,6 +9,19 @@ describe Yukkuri::Message do
     its("mora.flatten") { should == %w{カ ッ パ ノ コ ー ブ ツ ワ チョ コ レ ー ト} }
   end
 
+  describe 'ビルトイン置き換え' do
+    context 'うはww' do
+      its(:yomi)  { should == "ウワ" }
+    end
+
+    context "wwww" do
+      its(:aqtalk) { should == "ワラワラ'" }
+    end
+
+    context '8888888' do
+      its(:aqtalk) { should == "パ'チ+パ'チ+パ'チ" }
+    end
+  end
 
   describe "アクセント" do
     context "解析結果を表示します" do

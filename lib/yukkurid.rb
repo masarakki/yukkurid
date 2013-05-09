@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'sinatra'
 require 'socket'
 require 'nokogiri'
@@ -9,7 +10,7 @@ require 'redis'
 def say(message, name)
   yukkuri_bin = File.expand_path('../../bin/yukkuri', __FILE__)
   aqtalk = Yukkuri::Message.new(message).aqtalk
-  `echo "#{aqtalk}/#{name}" | #{yukkuri_bin} | aplay -q`
+  `echo "#{aqtalk}、#{name}" | #{yukkuri_bin} | aplay -q`
 end
 
 def redis
