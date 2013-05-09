@@ -17,6 +17,14 @@ module Yukkuri
 
     def initialize(str)
       @message = NKF.nkf('-w -Z1', str)
+      case @message
+      when /8{3,}/
+        @aqtalk = "パ'チ+パ'チ+パ'チ"
+      when /^w+$/
+        @aqtalk = "ワラワラ'"
+      when /w{2,}/
+        @message = @message.gsub /w{2,}/, ""
+      end
     end
 
     def self.unidic_dir
@@ -53,7 +61,7 @@ module Yukkuri
     end
 
     def yomi
-      @yomi ||= mecab.map{|x| x[YOMI]}.join
+      @yomi ||= mecab.map{|x| x[YOMI] || x[0]}.join
     end
 
     def accent
@@ -63,6 +71,7 @@ module Yukkuri
     NEW_ACCENT = 100
 
     def aqtalk
+      return @aqtalk if @aqtalk
       result = []
       before_accent = 0
 
